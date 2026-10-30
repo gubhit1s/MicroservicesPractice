@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using AppointmentsApi.Data;
 using AppointmentsApi.Models;
 using AppointmentsApi.Services;
+using Grpc.Net.Client;
+using AppointmentsApi.Protos;
 
 namespace AppointmentsApi.Controllers
 {
@@ -18,13 +20,16 @@ namespace AppointmentsApi.Controllers
         private readonly AppointmentContext _context;
         private readonly PatientApiClient _patientApiClient;
         private readonly DoctorApiClient _doctorApiClient;
+        private readonly IConfiguration _configuration;
 
-        public AppointmentsController(AppointmentContext context, PatientApiClient patientApiClient, DoctorApiClient doctorApiClient)
-        {
-            _context = context;
-            _patientApiClient = patientApiClient;
-            _doctorApiClient = doctorApiClient;
-        }
+    public AppointmentsController(AppointmentContext context, PatientApiClient patientApiClient,
+        DoctorApiClient doctorApiClient, IConfiguration configuration)
+    {
+        _context = context;
+        _patientApiClient = patientApiClient;
+        _doctorApiClient = doctorApiClient;
+        _configuration = configuration;
+    }
 
         // GET: api/Appointments
         [HttpGet]
@@ -47,6 +52,11 @@ namespace AppointmentsApi.Controllers
             var patient = await _patientApiClient.GetPatientAsync(id);
             var doctor = await _doctorApiClient.GetDoctorAsync(id);
 
+            var grpcEndpoint = _configuration["GrpcEndpoints:DocumentService"]!;
+            using var channel = GrpcChannel.ForAddress(grpcEndpoint);
+            var client = new DocumentService.DocumentServiceClient(channel);
+            var documents = await client.GetAllAsync(new PatientId { Id = patient.PatientId.ToString() });
+
             AppointmentDetails appointmentDetails = new AppointmentDetails(
                 appointment.AppointmentId,
                 patient,
@@ -54,7 +64,8 @@ namespace AppointmentsApi.Controllers
                 appointment.Slot?.Start ?? DateTime.MinValue,
                 appointment.Slot?.End ?? DateTime.MinValue,
                 appointment.Location?.RoomNumber,
-                appointment.Location?.Building
+                appointment.Location?.Building,
+                documents
             );
 
             return Ok(appointmentDetails);

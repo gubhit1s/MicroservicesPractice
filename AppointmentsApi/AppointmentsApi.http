@@ -2,6 +2,11 @@
 GET http://localhost:5255/api/appointments
 Accept: application/json
 ###
+
+GET http://localhost:5255/api/appointments/18337d0e-d04f-44a7-be38-a6626b1c51ae
+Accept: application/json
+###
+
 # Create a new appointment
 POST http://localhost:5255/api/appointments
 Content-Type: application/json

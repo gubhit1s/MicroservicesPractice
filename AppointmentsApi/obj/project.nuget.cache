@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "HL3tHdIodJ4=",
+  "dgSpecHash": "LfYwrPvjVek=",
   "success": true,
-  "projectFilePath": "D:\\Microservices\\Practice\\AppointmentsApi\\AppointmentsApi.csproj",
+  "projectFilePath": "D:\\Microservices\\Practice\\MicroservicesPractice\\AppointmentsApi\\AppointmentsApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\google.protobuf\\3.36.2\\google.protobuf.3.36.2.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\grpc.core.api\\2.84.0\\grpc.core.api.2.84.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\grpc.net.client\\2.84.0\\grpc.net.client.2.84.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\grpc.net.common\\2.84.0\\grpc.net.common.2.84.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\grpc.tools\\2.85.0\\grpc.tools.2.85.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
@@ -124,9 +129,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
-      "projectPath": "D:\\Microservices\\Practice\\AppointmentsApi\\AppointmentsApi.csproj",
+      "projectPath": "D:\\Microservices\\Practice\\MicroservicesPractice\\AppointmentsApi\\AppointmentsApi.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Microservices\\Practice\\AppointmentsApi\\AppointmentsApi.csproj",
+      "filePath": "D:\\Microservices\\Practice\\MicroservicesPractice\\AppointmentsApi\\AppointmentsApi.csproj",
       "libraryId": "Microsoft.OpenApi",
       "targetGraphs": [
         "net10.0"
@@ -136,9 +141,9 @@
       "code": "NU1901",
       "level": "Warning",
       "message": "Package 'NuGet.Packaging' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "D:\\Microservices\\Practice\\AppointmentsApi\\AppointmentsApi.csproj",
+      "projectPath": "D:\\Microservices\\Practice\\MicroservicesPractice\\AppointmentsApi\\AppointmentsApi.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Microservices\\Practice\\AppointmentsApi\\AppointmentsApi.csproj",
+      "filePath": "D:\\Microservices\\Practice\\MicroservicesPractice\\AppointmentsApi\\AppointmentsApi.csproj",
       "libraryId": "NuGet.Packaging",
       "targetGraphs": [
         "net10.0"
@@ -148,9 +153,9 @@
       "code": "NU1901",
       "level": "Warning",
       "message": "Package 'NuGet.Protocol' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "D:\\Microservices\\Practice\\AppointmentsApi\\AppointmentsApi.csproj",
+      "projectPath": "D:\\Microservices\\Practice\\MicroservicesPractice\\AppointmentsApi\\AppointmentsApi.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Microservices\\Practice\\AppointmentsApi\\AppointmentsApi.csproj",
+      "filePath": "D:\\Microservices\\Practice\\MicroservicesPractice\\AppointmentsApi\\AppointmentsApi.csproj",
       "libraryId": "NuGet.Protocol",
       "targetGraphs": [
         "net10.0"

@@ -1,3 +1,4 @@
+using AppointmentsApi.Protos;
 using AppointmentsApi.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,8 +42,11 @@ public class AppointmentDetails : Appointment
 
   public Doctor? Doctor { get; set; }
 
+  public DocumentList? Documents { get; set; }
+
   public AppointmentDetails(Guid appointmentId, Patient? patient, Doctor? doctor,
-                          DateTime slotStart, DateTime slotEnd, string? locationRoomNumber, string? locationBuilding)
+                          DateTime slotStart, DateTime slotEnd, string? locationRoomNumber,
+                          string? locationBuilding, DocumentList? documents)
       : base()
   {
     AppointmentId = appointmentId;
@@ -50,5 +54,6 @@ public class AppointmentDetails : Appointment
     Doctor = doctor;
     Slot = new TimeSlot(slotStart, slotEnd);
     Location = new Location(locationRoomNumber ?? string.Empty, locationBuilding ?? string.Empty);
+    Documents = documents;
   }
 }
