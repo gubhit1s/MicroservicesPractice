@@ -66,6 +66,22 @@
               "target": "Package",
               "version": "[2.85.0, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.10.0, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.11, )"
+            },
+            "MassTransit.AspNetCore": {
+              "target": "Package",
+              "version": "[7.2.2, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[8.5.11, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.3, )"
@@ -87,6 +103,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[10.0.2, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[2.10.0, )"
             }
           },
           "imports": [

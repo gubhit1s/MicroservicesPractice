@@ -10,6 +10,8 @@ using AppointmentsApi.Models;
 using AppointmentsApi.Services;
 using Grpc.Net.Client;
 using AppointmentsApi.Protos;
+using MassTransit;
+using AppointmentsApi.Messages;
 
 namespace AppointmentsApi.Controllers
 {
@@ -21,15 +23,17 @@ namespace AppointmentsApi.Controllers
         private readonly PatientApiClient _patientApiClient;
         private readonly DoctorApiClient _doctorApiClient;
         private readonly IConfiguration _configuration;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-    public AppointmentsController(AppointmentContext context, PatientApiClient patientApiClient,
-        DoctorApiClient doctorApiClient, IConfiguration configuration)
-    {
-        _context = context;
-        _patientApiClient = patientApiClient;
-        _doctorApiClient = doctorApiClient;
-        _configuration = configuration;
-    }
+        public AppointmentsController(AppointmentContext context, PatientApiClient patientApiClient,
+            DoctorApiClient doctorApiClient, IConfiguration configuration, IPublishEndpoint publishEndpoint)
+        {
+            _context = context;
+            _patientApiClient = patientApiClient;
+            _doctorApiClient = doctorApiClient;
+            _configuration = configuration;
+            _publishEndpoint = publishEndpoint;
+        }
 
         // GET: api/Appointments
         [HttpGet]
@@ -110,7 +114,16 @@ namespace AppointmentsApi.Controllers
             _context.Appointments.Add(appointment);
             await _context.SaveChangesAsync();
 
+            await _publishEndpoint.Publish(new AppointmentCreated()
+            {
+                AppointmentId = appointment.AppointmentId,
+                PatientId = appointment.PatientId,
+                DoctorId = appointment.DoctorId,
+                AppointmentDate = appointment.Slot?.Start ?? DateTime.MinValue
+            });
+
             return CreatedAtAction("GetAppointment", new { id = appointment.AppointmentId }, appointment);
+
         }
 
         // DELETE: api/Appointments/5

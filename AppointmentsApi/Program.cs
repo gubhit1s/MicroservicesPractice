@@ -1,13 +1,14 @@
 using AppointmentsApi.Data;
 using AppointmentsApi.Services;
 using Microsoft.EntityFrameworkCore;
+using MassTransit;
+using AppointmentsApi.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
@@ -22,6 +23,19 @@ builder.Services.AddHttpClient<PatientApiClient>(client =>
 builder.Services.AddHttpClient<DoctorApiClient>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["ApiEndpoints:DoctorsApi"]!);
+});
+builder.Services.AddScoped<IEmailService, EmailService>();
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<AppointmentCreatedConsumer>();
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.ReceiveEndpoint("appointment_created_queue", e =>
+        {
+            e.ConfigureConsumer<AppointmentCreatedConsumer>(context);
+        });
+    });
 });
 
 var app = builder.Build();

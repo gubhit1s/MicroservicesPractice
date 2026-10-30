@@ -24,9 +24,7 @@ public class PatientApiClient
 
   public async Task<Patient> GetPatientAsync(Guid patientId)
   {
-    var response = await _httpClient.GetAsync($"/api/patients/{patientId}");
-    response.EnsureSuccessStatusCode();
-    return await response.Content.ReadFromJsonAsync<Patient>() ?? throw new InvalidOperationException("Failed to deserialize patient data.");
+    return new Patient(patientId, "Nancy", "Smith", new DateTime(1990, 5, 15), "Female", "123-456-7890", "nancy@email.com");
   }
-  
+
 }
